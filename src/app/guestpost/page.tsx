@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+interface Post {
+  name: string;
+  email: string;
+  title: string;
+  content: string;
+}
+
 function GuestPostPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -11,7 +18,7 @@ function GuestPostPage() {
     content: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [posts, setPosts] = useState<any[]>([]); // Store posts in an array
+  const [posts, setPosts] = useState<Post[]>([]); // Store posts in an array
   const [expandedPost, setExpandedPost] = useState<number | null>(null); // Manage expanded post
 
   // Load posts from localStorage when the component mounts
@@ -22,7 +29,7 @@ function GuestPostPage() {
     }
   }, []);
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -30,7 +37,7 @@ function GuestPostPage() {
     }));
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add the new post to the posts array
     const newPosts = [...posts, formData];
@@ -65,7 +72,7 @@ function GuestPostPage() {
         {/* Show success message if form is submitted */}
         {isSubmitted ? (
           <div className="text-center bg-green-200 p-4 rounded-md mb-8">
-            <p className="text-xl text-green-600">Thank you for your submission! We'll review your post shortly.</p>
+            <p className="text-xl text-green-600">Thank you for your submission! We&apos;ll review your post shortly.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">

@@ -1,8 +1,9 @@
 "use client";
 
 import About from "@/components/About"; // Ensure About component is properly imported
-import TrendingBlogs from "@/components/TrendingBlogs"
+import TrendingBlogs from "@/components/TrendingBlogs";
 import Link from "next/link";
+import Image from "next/image";
 
 function Hero() {
   return (
@@ -26,9 +27,11 @@ function Hero() {
 
           {/* Image */}
           <div className="md:w-1/2 flex justify-center">
-            <img
-              src="blog.jpg"
+            <Image
+              src="/blog.jpg" // Ensure the path is correct (relative path from the public folder)
               alt="Blog Hero"
+              width={500} // Set a specific width (adjust as needed)
+              height={400} // Set a specific height (adjust as needed)
               className="w-3/4 md:w-full rounded-lg shadow-lg"
             />
           </div>

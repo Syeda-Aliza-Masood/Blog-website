@@ -1,6 +1,6 @@
-// TrendingBlogs.tsx
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const TrendingBlogs = () => {
   // Example list of trending blog topics with image URLs and titles
@@ -20,9 +20,11 @@ const TrendingBlogs = () => {
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <Link href="#">
                 <div className={`relative w-full ${index === 0 || index === 3 ? 'scale-90' : ''}`}>
-                  <img
+                  <Image
                     src={blog.imageUrl}
                     alt={blog.title}
+                    width={500}  // Add width for Next.js Image optimization
+                    height={300} // Add height for Next.js Image optimization
                     className="w-full h-48 object-cover rounded-lg"
                   />
                 </div>
